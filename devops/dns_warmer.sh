@@ -4,5 +4,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 echo $SCRIPTPATH
 cd $SCRIPTPATH
 
-python3 -B ../dns_warmer.py
+
+mkdir $SCRIPTPATH/../logs/
+python3 -B ../dns_warmer.py >> $SCRIPTPATH/../logs/dns_warmer.log 2>&1
  
