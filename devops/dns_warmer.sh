@@ -6,5 +6,5 @@ cd $SCRIPTPATH
 
 
 mkdir $SCRIPTPATH/../logs/
-python3 -B ../dns_warmer.py >> $SCRIPTPATH/../logs/dns_warmer.log 2>&1
+python3 -B ../dns_warmer.py > $SCRIPTPATH/../logs/dns_warmer.log 2>&1
  
