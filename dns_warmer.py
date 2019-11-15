@@ -23,6 +23,14 @@ class dns_warmer:
         self.max_runtime = args["max_runtime"]
         self.max_to_process = args["max_to_process"]
 
+
+        logger.dump("*** dns_warmer ***", "info")
+        logger.dump("input = %s" %(self.input), "debug")
+        logger.dump("threads = %d" %(self.threads), "debug")
+        logger.dump("max_runtime = %d" %(self.max_runtime), "debug")
+        logger.dump("max_to_process = %d" %(self.max_to_process), "debug")
+        
+
         self.ref_tc = threading_control.threading_control(3600 * 24 * 7, max_threads=self.threads)
         thread.start_new_thread(self.watchdog, ())
 
