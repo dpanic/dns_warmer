@@ -137,7 +137,6 @@ class dns_warmer:
                 except:
                     out[line] = 1
 
-        os._exit(1)
         out_sorted = sorted(out.items(), key=operator.itemgetter(1), reverse=True)
         
         # cut to maximum number to process
