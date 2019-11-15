@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import os
 import sys
 import time
@@ -12,6 +13,8 @@ except:
 
 from dependencies import logger
 from dependencies import threading_control
+from dependencies import validation
+
 
 
 class dns_warmer:
@@ -32,6 +35,7 @@ class dns_warmer:
         
 
         self.ref_tc = threading_control.threading_control(3600 * 24 * 7, max_threads=self.threads)
+        self.ref_validation = validation.validation()
         thread.start_new_thread(self.watchdog, ())
 
 
@@ -98,9 +102,6 @@ class dns_warmer:
         self.ref_tc.dec_threads()
 
 
-
-
-
     #
     # Parse log and extract frequencies
     #
@@ -138,6 +139,11 @@ class dns_warmer:
                 line = line.strip(" ")
 
                 if line == "":
+                    continue
+
+
+                if self.ref_validation.is_ip(line) == True:
+                    logger.dump("%s is IP! skipping" %(line), "warning")
                     continue
 
                 try:
