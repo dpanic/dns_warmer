@@ -1,1 +1,1 @@
-0 */5 * * * /bin/bash /home/atomicpi/dns_warmer/devops/dns_warmer.sh
+*/5 * * * * /bin/bash /home/atomicpi/dns_warmer/devops/dns_warmer.sh
