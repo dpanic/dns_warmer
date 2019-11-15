@@ -57,7 +57,7 @@ class dns_warmer:
             hostname = freq[0]
             thread.start_new_thread(self.warm, (hostname,))
             it += 1
-            
+
             if it % 10 == 0:
                 logger.dump("[ %d / %d ] %s" %(it, total, hostname), "debug")
 
@@ -121,6 +121,9 @@ class dns_warmer:
                     line = line[1]
                 line = line.strip(" ")
 
+                if line.find("cached") != -1:
+                    continue
+
                 line = line.split(" ")
                 if len(line) > 1:
                     line = line[1]
@@ -134,7 +137,7 @@ class dns_warmer:
                 except:
                     out[line] = 1
 
-
+        os._exit(1)
         out_sorted = sorted(out.items(), key=operator.itemgetter(1), reverse=True)
         
         # cut to maximum number to process
