@@ -179,7 +179,7 @@ if __name__ == "__main__":
     parser.add_argument("--input", default="/var/log/pihole.log", required=False, help="location of log")
     parser.add_argument('--threads', type=int, default=3)
     parser.add_argument('--max_runtime', type=int, default=300)
-    parser.add_argument('--max_to_process', type=int, default=200)
+    parser.add_argument('--max_to_process', type=int, default=250)
 
 
     args = vars(parser.parse_args())
