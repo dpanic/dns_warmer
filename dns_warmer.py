@@ -112,12 +112,18 @@ class dns_warmer:
             logger.dump("file %s does not exist!" %(file_loc), "critical")
             os._exit(1)
 
+
+        skip_words = [
+            "NXDOMAIN",
+            "cached",
+        ]
+
         it = 0
         with open(file_loc, "r") as infile:
             for line in infile:
                 it += 1
 
-                if it >= 20000:
+                if it >= 1000000:
                     break
                 
                 line = line.lower()
@@ -130,8 +136,14 @@ class dns_warmer:
                     line = line[1]
                 line = line.strip(" ")
 
-                if line.find("cached") != -1:
+
+                is_valid = True
+                for skip_word in skip_words:
+                    if line.find(skip_word) != -1:
+                        is_valid = False
+                if is_valid == False:
                     continue
+
 
                 line = line.split(" ")
                 if len(line) > 1:
