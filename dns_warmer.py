@@ -116,6 +116,7 @@ class dns_warmer:
         skip_words = [
             "NXDOMAIN",
             "cached",
+            ".in-addr.arpa",
         ]
 
         it = 0
