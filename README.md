@@ -12,4 +12,4 @@ min-cache-ttl=300
 ## Cronjob
 You can set cronjob something like this:
 
-```*/5 * * * * /bin/bash /home/atomicpi/dns_warmer/devops/dns_warmer.sh```
+```*/5 * * * * sleep $((RANDOM\%15)) && ionice -c idle nice -19 /bin/bash /home/atomicpi/dns_warmer/devops/dns_warmer.sh  > /dev/null 2>&1```
